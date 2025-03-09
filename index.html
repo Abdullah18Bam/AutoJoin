@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAU Session Manager</title>
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --background-color: #f4f6f7;
+            --text-color: #2c3e50;
+            --input-border-color: #bdc3c7;
+            --input-focus-color: #3498db;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 2rem;
+            gap: 2rem;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .table-container {
+            max-width: 300px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        input[type="text"], 
+        input[type="password"], 
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--input-border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus, 
+        input[type="password"]:focus, 
+        input[type="number"]:focus {
+            border-color: var(--input-focus-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .time-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .time-input input {
+            flex: 1;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        .submitted-data {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 1.5rem;
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .submitted-data h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .submitted-data p {
+            background-color: var(--background-color);
+            padding: 0.5rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            word-break: break-all;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid var(--input-border-color);
+        }
+        th, td {
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <h1>24-Hour Time Format</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>AM/PM</th>
+                    <th>24-Hour</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12am (midnight)</td><td>00:00</td></tr>
+                <tr><td>1am</td><td>01:00</td></tr>
+                <tr><td>2am</td><td>02:00</td></tr>
+                <tr><td>3am</td><td>03:00</td></tr>
+                <tr><td>4am</td><td>04:00</td></tr>
+                <tr><td>5am</td><td>05:00</td></tr>
+                <tr><td>6am</td><td>06:00</td></tr>
+                <tr><td>7am</td><td>07:00</td></tr>
+                <tr><td>8am</td><td>08:00</td></tr>
+                <tr><td>9am</td><td>09:00</td></tr>
+                <tr><td>10am</td><td>10:00</td></tr>
+                <tr><td>11am</td><td>11:00</td></tr>
+                <tr><td>12pm (noon)</td><td>12:00</td></tr>
+                <tr><td>1pm</td><td>13:00</td></tr>
+                <tr><td>2pm</td><td>14:00</td></tr>
+                <tr><td>3pm</td><td>15:00</td></tr>
+                <tr><td>4pm</td><td>16:00</td></tr>
+                <tr><td>5pm</td><td>17:00</td></tr>
+                <tr><td>6pm</td><td>18:00</td></tr>
+                <tr><td>7pm</td><td>19:00</td></tr>
+                <tr><td>8pm</td><td>20:00</td></tr>
+                <tr><td>9pm</td><td>21:00</td></tr>
+                <tr><td>10pm</td><td>22:00</td></tr>
+                <tr><td>11pm</td><td>23:00</td></tr>
+                <tr><td>12am</td><td>24:00</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h1>KAU Auto Join</h1>
+        
+        <form id="session-form">
+            <div class="form-group">
+                <label for="target_time">Target Time (HH:MM:SS):</label>
+                <div class="time-input">
+                    <input type="number" id="hours" name="hours" min="0" max="23" placeholder="HH" required>
+                    <input type="number" id="minutes" name="minutes" min="0" max="59" placeholder="MM" required>
+                    <input type="number" id="seconds" name="seconds" min="0" max="59" placeholder="SS" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="userid">User ID:</label>
+                <input type="text" id="userid" name="userid" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="class_link">Class Link:</label>
+                <input type="text" id="class_link" name="class_link" placeholder="As seen in the session video" required><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="session_id">Session ID:</label>
+                <input type="text" id="session_id" name="session_id" required>
+                <a href="https://youtu.be/SJWNJN8ht8Q" target="_blank">(Click here to see where to find the Session ID)</a><br><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="course_name">Course Name (Optional):</label>
+                <input type="text" id="course_name" name="course_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="person_name">Person's Name (Optional):</label>
+                <input type="text" id="person_name" name="person_name">
+            </div>
+
+            <button type="button" onclick="submitForm()">Add Session</button>
+        </form>
+    </div>
+
+    <div class="submitted-data">
+        <h2>Submitted Data:</h2>
+        <p id="display-target-time"></p>
+        <p id="display-userid"></p>
+        <p id="display-password"></p>
+        <p id="display-class-link"></p>
+        <p id="display-session-id"></p>
+        <p id="display-course-name"></p>
+        <p id="display-person-name"></p>
+    </div>
+
+    <script>
+     function submitForm() {
+    // Validate time inputs
+    const hours = document.getElementById('hours').value;
+    const minutes = document.getElementById('minutes').value;
+    const seconds = document.getElementById('seconds').value;
+
+    if (!hours || !minutes || !seconds) {
+        alert("Please fill in all fields for Target Time.");
+        return;
+    }
+
+    // Collect form data
+    const formData = {
+        target_time: `${hours}:${minutes}:${seconds}`,
+        userid: document.getElementById('userid').value,
+        password: document.getElementById('password').value,
+        class_link: document.getElementById('class_link').value,
+        session_id: document.getElementById('session_id').value,
+        course_name: document.getElementById('course_name').value,
+        person_name: document.getElementById('person_name').value,
+    };
+
+    // Validate required fields
+    if (!formData.userid || !formData.password || !formData.class_link || !formData.session_id) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    // Simulate backend submission with fetch (like in index v1.html)
+    fetch('/add_session', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message || 'Session Added Successfully!');
+        displayFormData(formData);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to add session');
+    });
+
+
+}
+document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve stored values
+    document.querySelectorAll("input").forEach(input => {
+        let storedValue = localStorage.getItem(input.id);
+        if (storedValue) {
+            input.value = storedValue;
+        }
+
+        // Save input changes
+        input.addEventListener("input", function () {
+            localStorage.setItem(input.id, input.value);
+        });
+    });
+});
+
+function displayFormData(formData) {
+    document.getElementById('display-target-time').textContent = `Target Time: ${formData.target_time}`;
+    document.getElementById('display-userid').textContent = `User ID: ${formData.userid}`;
+    document.getElementById('display-password').textContent = `Password: ${'*'.repeat(formData.password.length)}`;
+    document.getElementById('display-class-link').textContent = `Class Link: ${formData.class_link}`;
+    document.getElementById('display-session-id').textContent = `Session ID: ${formData.session_id}`;
+    document.getElementById('display-course-name').textContent = formData.course_name ? `Course Name: ${formData.course_name}` : 'Course Name: N/A';
+    document.getElementById('display-person-name').textContent = formData.person_name ? `Person's Name: ${formData.person_name}` : 'Person\'s Name: N/A';
+}
+    </script>
+</body>
+</html>
